@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow: hidden;
+            position: relative;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            animation: float 3s ease-in-out infinite;
+            font-size: 2.5rem;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #1e3c72;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #6a11cb;
+            color: #fff;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        .about, .contact {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Personal image in top-right corner */
+        .about img {
+            width: 150px; /* Adjust size */
+            height: 150px;
+            border-radius: 70%;
+            object-fit: cover;
+            /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); */
+            position: absolute;
+            top: 20px; /* Adjust the distance from the top */
+            right: 20px; /* Adjust the distance from the right */
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: slideIn 1s ease-out forwards;
+        }
+
+        /* Animation for image (sliding from top-right) */
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px) scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .about img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .projects {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .projects h2 {
+            margin-bottom: 20px;
+        }
+
+        .project-cards {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .projects .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 1s ease;
+            flex: 1;
+        }
+
+        .projects .card:hover {
+            transform: translateY(-10px) rotateY(10deg);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .projects .card h3 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            color: white;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ffcc00;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                color: #fff;
+            }
+
+            nav a {
+                padding: 10px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .about, .contact {
+                padding: 15px;
+            }
+
+            .project-cards {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="animated-3d">Welcome to My Portfolio</h1>
+        <p>Hi! I'm [Your Name], a [Your Profession].</p>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <!-- Personal image is positioned top right -->
+        <img src="C:\Users\Vedant\Downloads\ved2.png" alt="">
+        <p>Hello! I'm [Your Name], a passionate [Your Profession] specializing in [Your Skills or Areas of Expertise]. I love creating solutions that make a difference.</p>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>My Projects</h2>
+        <div class="project-cards">
+            <div class="card" id="card1">
+                <h3>Project 1</h3>
+                <p>A brief description of your first project. <a href="#">View Project</a></p>
+            </div>
+            <div class="card" id="card2">
+                <h3>Project 2</h3>
+                <p>A brief description of your second project. <a href="#">View Project</a></p>
+            </div>
+            <div class="card" id="card3">
+                <h3>Project 3</h3>
+                <p>A brief description of your third project. <a href="#">View Project</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="mailto:yourname@example.com">yourname@example.com</a></p>
+        <p>Phone: +123 456 7890</p>
+
+        <div class="social-icons">
+            <a href="#">LinkedIn</a>
+            <a href="#">GitHub</a>
+            <a href="#">Twitter</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 [Your Name]. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const colors = [
+            ["#f4f4f9", "#e6e9f0"],
+            ["#ffe3e3", "#ffd5d5"],
+            ["#e4ffe1", "#d1ffd0"],
+            ["#dbe7ff", "#c8dfff"],
+        ];
+
+        function updateBackgroundColors() {
+            const gradientIndex = Math.floor((Date.now() / 3000) % colors.length);
+            const [color1, color2] = colors[gradientIndex];
+            document.body.style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
+            document.querySelector("header").style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
+        }
+
+        // Update background colors every 3 seconds
+        setInterval(updateBackgroundColors, 3000);
+    </script>
+</body>
+</html>
