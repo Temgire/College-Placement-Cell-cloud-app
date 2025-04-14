@@ -8,10 +8,11 @@ export const postJob = async (req, res) => {
 
         if (!title || !description || !requirements || !salary || !location || !jobType || !experience || !position || !companyId) {
             return res.status(400).json({
-                message: "Somethin is missing.",
+                message: "Something is missing.",
                 success: false
-            })
-        };
+            });
+        }
+
         const job = await Job.create({
             title,
             description,
@@ -24,6 +25,7 @@ export const postJob = async (req, res) => {
             company: companyId,
             created_by: userId
         });
+
         return res.status(201).json({
             message: "New job created successfully.",
             job,
@@ -31,8 +33,13 @@ export const postJob = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: "Failed to post job.",
+            success: false
+        });
     }
-}
+};
+
 // student k liye
 export const getAllJobs = async (req, res) => {
     try {
@@ -43,60 +50,83 @@ export const getAllJobs = async (req, res) => {
                 { description: { $regex: keyword, $options: "i" } },
             ]
         };
-        const jobs = await Job.find(query).populate({
-            path: "company"
-        }).sort({ createdAt: -1 });
+
+        const jobs = await Job.find(query)
+            .populate("company")
+            .sort({ createdAt: -1 });
+
         if (!jobs) {
             return res.status(404).json({
                 message: "Jobs not found.",
                 success: false
-            })
-        };
+            });
+        }
+
         return res.status(200).json({
             jobs,
             success: true
-        })
+        });
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: "Failed to fetch jobs.",
+            success: false
+        });
     }
-}
+};
+
 // student
 export const getJobById = async (req, res) => {
     try {
         const jobId = req.params.id;
         const job = await Job.findById(jobId).populate({
-            path:"applications"
+            path: "applications",
+            populate: {
+                path: "applicant"
+            }
         });
+
         if (!job) {
             return res.status(404).json({
-                message: "Jobs not found.",
+                message: "Job not found.",
                 success: false
-            })
-        };
+            });
+        }
+
         return res.status(200).json({ job, success: true });
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: "Failed to fetch job.",
+            success: false
+        });
     }
-}
+};
+
 // admin kitne job create kra hai abhi tk
 export const getAdminJobs = async (req, res) => {
     try {
         const adminId = req.id;
-        const jobs = await Job.find({ created_by: adminId }).populate({
-            path:'company',
-            createdAt:-1
-        });
+        const jobs = await Job.find({ created_by: adminId })
+            .populate("company")
+            .sort({ createdAt: -1 });
+
         if (!jobs) {
             return res.status(404).json({
                 message: "Jobs not found.",
                 success: false
-            })
-        };
+            });
+        }
+
         return res.status(200).json({
             jobs,
             success: true
-        })
+        });
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: "Failed to fetch admin jobs.",
+            success: false
+        });
     }
-}
+};
