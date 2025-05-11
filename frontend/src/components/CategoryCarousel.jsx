@@ -16,9 +16,12 @@ const category = [
 const CategoryCarousel = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const searchJobHandler = (query) => {
-        dispatch(setSearchedQuery(query));
-        navigate("/browse");
+        if (query.trim()) {
+            dispatch(setSearchedQuery(query.trim()));
+            navigate("/browse");
+        }
     }
 
     return (
@@ -27,8 +30,14 @@ const CategoryCarousel = () => {
                 <CarouselContent>
                     {
                         category.map((cat, index) => (
-                            <CarouselItem className="md:basis-1/2 lg-basis-1/3">
-                                <Button onClick={()=>searchJobHandler(cat)} variant="outline" className="rounded-full">{cat}</Button>
+                            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                                <Button 
+                                    onClick={() => searchJobHandler(cat)} 
+                                    variant="outline" 
+                                    className="rounded-full hover:bg-[#6A38C2] hover:text-white transition-colors"
+                                >
+                                    {cat}
+                                </Button>
                             </CarouselItem>
                         ))
                     }
@@ -40,4 +49,4 @@ const CategoryCarousel = () => {
     )
 }
 
-export default CategoryCarousel
+export default CategoryCarousel;

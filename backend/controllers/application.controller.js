@@ -220,7 +220,7 @@ export const getApplicants = async (req, res) => {
             options: { sort: { createdAt: -1 } },
             populate: {
                 path: 'applicant',
-                select: 'fullname profile'  // ✅ Only select name and profile
+                select: 'fullname email phoneNumber profile'  // Added email and phoneNumber
             }
         });
 
@@ -237,6 +237,10 @@ export const getApplicants = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: 'Internal server error',
+            success: false
+        });
     }
 };
 
